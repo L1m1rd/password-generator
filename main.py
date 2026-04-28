@@ -82,6 +82,13 @@ def rerol():
         else:
             print("Пиши только 'да' или 'нет' ")
 
+def save_to_file(password):
+    try:
+        with open("passwords.txt", 'a', encoding='utf-8') as file:
+            file.write(f"{password}\n")
+        print(f"✅ Пароль успешно сохранён в файл passwords.txt")
+    except:
+        print("❌ Ошибка сохранения!")
 
 
 def main():
@@ -97,6 +104,8 @@ def main():
 
         if rerol():
             break
+
+    save_to_file(password)
 
 
 
