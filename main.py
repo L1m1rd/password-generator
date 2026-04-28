@@ -12,7 +12,7 @@ def head_text():
 def length():
     while True:
         try:
-            password_length = int(input("Введи длину пароля (от 8 до 128)"))
+            password_length = int(input("Введи длину пароля (от 8 до 128): "))
             if 8 <= password_length <= 128:
                 return password_length
             else:
@@ -24,33 +24,33 @@ def nums():
     password_nums = True
     while True:
         try:
-            pas_nums = input("Нужны цифры в пароле? (Пиши 'да' или 'нет')")
-            if pas_nums == 'да':
+            pas_nums = input("Нужны цифры в пароле? (Пиши 'да' или 'нет'): ")
+            if pas_nums in ['yes', '1', 'y', 'да']:
                 password_nums = True
                 return password_nums
-            elif pas_nums == 'нет':
+            elif pas_nums in ['no', '0', 'n', 'нет']:
                 password_nums = False
                 return password_nums
             else:
-                print("Пиши только 'да' или 'нет'")
+                print("Пиши только 'да' или 'нет' ")
         except:
-            print("Пиши только 'да' или 'нет'")
+            print("Пиши только 'да' или 'нет' ")
 
 def symbols():
     password_syms = True
     while True:
         try:
-            pas_syms = input("Нужны специальные символы в пароле? (Пиши 'да' или 'нет')")
-            if pas_syms == 'да':
+            pas_syms = input("Нужны специальные символы в пароле? (Пиши 'да' или 'нет'): ")
+            if pas_syms in ['yes', '1', 'y', 'да']:
                 password_syms = True
                 return password_syms
-            elif pas_syms == 'нет':
+            elif pas_syms in ['no', '0', 'n', 'нет']:
                 password_syms = False
                 return password_syms
             else:
-                print("Пиши только 'да' или 'нет'")
+                print("Пиши только 'да' или 'нет' ")
         except:
-            print("Пиши только 'да' или 'нет'")
+            print("Пиши только 'да' или 'нет' ")
 
 
 def generate(pass_len, pass_nums, pass_syms):
@@ -72,16 +72,15 @@ def generate(pass_len, pass_nums, pass_syms):
     return password
 
 def rerol():
-    resp_pass = True
-    while resp_pass:
-        like = input("Вам нравится пароль? (Пиши 'да' или 'нет')")
-        if like == 'да':
-            resp_pass = False
-        elif like == 'нет':
-            print("Тогда я сделаю новый пароль ")
-            resp_pass = True
+    while True:
+        like = input("Вам нравится пароль? (Пиши 'да' или 'нет'): ")
+        if like in ['yes', '1', 'y', 'да']:
+            return True
+        elif like in ['no', '0', 'n', 'нет']:
+            print("Тогда я сделаю новый пароль: ")
+            return False
         else:
-            print("Пиши только 'да' или 'нет'")
+            print("Пиши только 'да' или 'нет' ")
 
 
 
@@ -92,9 +91,12 @@ def main():
     pass_nums = nums()
     pass_syms = symbols()
 
-    password = generate(pass_len, pass_nums, pass_syms)
+    while True:
+        password = generate(pass_len, pass_nums, pass_syms)
+        print("пароль: ", password)
 
-    print("пароль: ", password)
+        if rerol():
+            break
 
 
 
